@@ -11,6 +11,10 @@ pub const BenchmarkOptions = struct {
     bytes_per_op: ?u64 = null,
 };
 
+pub const SuiteRunOptions = struct {
+    silent: bool = false,
+};
+
 pub const BenchmarkEntry = struct {
     name: []const u8,
     bench_fn: *const fn () void,
@@ -42,15 +46,23 @@ pub const BenchmarkSuite = struct {
     }
 
     pub fn run(self: *BenchmarkSuite) !void {
-        std.debug.print("\n\x1b[1;36m========================================================================================================\x1b[0m\n", .{});
-        std.debug.print("\x1b[1;37m  ⚡ zbench Statistical Microbenchmark Suite (Pure Zig 0.16.0+, Criterion-Grade) \x1b[0m\n", .{});
-        std.debug.print("\x1b[1;36m========================================================================================================\x1b[0m\n\n", .{});
+        try self.runWithOptions(.{ .silent = false });
+    }
+
+    pub fn runWithOptions(self: *BenchmarkSuite, run_opts: SuiteRunOptions) !void {
+        if (!run_opts.silent) {
+            std.debug.print("\n\x1b[1;36m========================================================================================================\x1b[0m\n", .{});
+            std.debug.print("\x1b[1;37m  ⚡ zbench Statistical Microbenchmark Suite (Pure Zig 0.16.0+, Criterion-Grade) \x1b[0m\n", .{});
+            std.debug.print("\x1b[1;36m========================================================================================================\x1b[0m\n\n", .{});
+        }
 
         for (self.entries.items) |*entry| {
             try self.runSingle(entry);
         }
 
-        self.printSummary();
+        if (!run_opts.silent) {
+            self.printSummary();
+        }
     }
 
     fn runSingle(self: *BenchmarkSuite, entry: *BenchmarkEntry) !void {
@@ -64,7 +76,6 @@ pub const BenchmarkSuite = struct {
             while (i < iters_per_batch) : (i += 1) {
                 entry.bench_fn();
             }
-            // Double batch size if it took less than 1ms
             if (iters_per_batch < 10_000_000) {
                 iters_per_batch *= 2;
             }
@@ -169,7 +180,7 @@ pub const BenchmarkSuite = struct {
         } else if (val_ns < 1_000_000.0) {
             return std.fmt.bufPrint(buf, "{d:.2} µs", .{val_ns / 1000.0}) catch "-";
         } else {
-            return std.fmt.bufPrint(buf, "{d:.2} ms", .{val_ns / 1_000_000.0}) catch "-";
+            return std.fmt.bufPrint(buf, "{d:.2} ms", .{val_ns / 1000.0}) catch "-";
         }
     }
 };
@@ -191,5 +202,5 @@ test "suite add and run" {
     };
 
     try suite.add("dummy_loop", dummy.bench, .{ .sample_count = 10, .warmup_ms = 10 });
-    try suite.run();
+    try suite.runWithOptions(.{ .silent = true });
 }
