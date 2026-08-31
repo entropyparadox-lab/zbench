@@ -1,0 +1,14 @@
+.{
+    .name = .zbench,
+    .version = "1.0.0",
+    .minimum_zig_version = "0.16.0",
+    .dependencies = .{},
+    .paths = .{
+        "build.zig",
+        "build.zig.zon",
+        "src",
+        "LICENSE",
+        "README.md",
+    },
+    .fingerprint = 0xbb819b3c2f0a5f3a,
+}
