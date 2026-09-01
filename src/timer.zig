@@ -19,9 +19,15 @@ pub const Timer = struct {
     }
 
     pub fn nowNs() u64 {
-        var ts: std.posix.timespec = undefined;
-        _ = std.posix.system.clock_gettime(.MONOTONIC, &ts);
-        return @as(u64, @intCast(ts.sec)) * 1_000_000_000 + @as(u64, @intCast(ts.nsec));
+        if (@import("builtin").os.tag == .windows) {
+            var pc: std.os.windows.LARGE_INTEGER = undefined;
+            _ = std.os.windows.ntdll.RtlQueryPerformanceCounter(&pc);
+            return @as(u64, @intCast(@max(0, pc)));
+        } else {
+            var ts: std.posix.timespec = undefined;
+            _ = std.posix.system.clock_gettime(.MONOTONIC, &ts);
+            return @as(u64, @intCast(ts.sec)) * 1_000_000_000 + @as(u64, @intCast(ts.nsec));
+        }
     }
 };
 
