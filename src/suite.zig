@@ -52,7 +52,7 @@ pub const BenchmarkSuite = struct {
     pub fn runWithOptions(self: *BenchmarkSuite, run_opts: SuiteRunOptions) !void {
         if (!run_opts.silent) {
             std.debug.print("\n\x1b[1;36m========================================================================================================\x1b[0m\n", .{});
-            std.debug.print("\x1b[1;37m  ⚡ zbench Statistical Microbenchmark Suite (Pure Zig 0.16.0+, Criterion-Grade) \x1b[0m\n", .{});
+            std.debug.print("\x1b[1;37m  ⚡ zbench Statistical Microbenchmark Suite (Pure Zig 0.17.0-dev, Criterion-Grade) \x1b[0m\n", .{});
             std.debug.print("\x1b[1;36m========================================================================================================\x1b[0m\n\n", .{});
         }
 
