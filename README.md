@@ -1,11 +1,11 @@
 # zbench 📊
 
-[![Zig Version](https://img.shields.io/badge/Zig-0.16.0%2B-orange.svg)](https://ziglang.org)
+[![Zig Version](https://img.shields.io/badge/Zig-0.17.0%2B-orange.svg)](https://ziglang.org)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Zero C Dependencies](https://img.shields.io/badge/Zero--C-Pure%20Zig-brightgreen.svg)]()
 [![Statistical Analysis](https://img.shields.io/badge/Criterion.rs--Grade-Tukey%20Fences-purple.svg)]()
 
-**Criterion.rs-Grade Statistical Microbenchmarking & Performance Profiling Toolkit for Zig (v0.16.0+)**
+**Criterion.rs-Grade Statistical Microbenchmarking & Performance Profiling Toolkit for Zig (v0.17.0+)**
 
 `zbench` is an ergonomic, zero-C-dependency benchmarking framework for pure Zig. It brings statistical rigour, compiler-elision-proof `blackBox` fences, Tukey's outlier filtering, sub-nanosecond monotonic timing, and rich terminal ANSI sparkline reporting to Zig projects.
 
@@ -15,7 +15,7 @@
 
 ```text
 ========================================================================================================
-  ⚡ zbench Statistical Microbenchmark Suite (Pure Zig 0.16.0+, Criterion-Grade) 
+  ⚡ zbench Statistical Microbenchmark Suite (Pure Zig 0.17.0-dev, Criterion-Grade)
 ========================================================================================================
 
 Benchmark                    |     Throughput | Latency (Mean±σ) |   p50 (Median) |        p99 | Distribution
@@ -37,7 +37,7 @@ QuickSort (256 integers)     |   1.69 M ops/s |   593.1±37.5 ns |       581.2 n
   - **Percentiles**: p50 (Median), p75, p90, p95, p99.
   - **Throughput**: Computes operations/sec and MB/s or GB/s automatically when byte size is provided.
 - 📊 **Terminal ANSI Sparklines**: Unicode 8-level distribution plots (` ▂▃▄▅▆▇█`) printed directly in your terminal.
-- 📦 **Pure Zig 0.16.0+**: Zero C dependencies, instant compilation, fully cross-compilable.
+- 📦 **Pure Zig 0.17.0+**: Zero C dependencies, instant compilation, fully cross-compilable.
 
 ---
 
