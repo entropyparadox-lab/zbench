@@ -6,7 +6,7 @@ Thank you for contributing to `zbench`! To maintain the highest statistical accu
 
 ## 1. Compiler Versioning & Branch Strategy
 
-* **`main` (Protected)**: Targets **Official Stable Zig (`0.16.x`)**. All production releases (`vX.Y.Z`) are cut exclusively from `main`.
+* **`main` (Protected)**: Targets **Official Stable Zig (`0.17.1`; minimum supported `0.17.0`)**. All production releases (`vX.Y.Z`) are cut exclusively from `main`.
 * **`zig-master`**: Tracks upstream `ziglang/zig` nightly builds.
 * **`feat/<name>` / `fix/<name>`**: Branch off `main` for stable changes.
 

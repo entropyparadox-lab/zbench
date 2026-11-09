@@ -15,7 +15,7 @@
 
 ```text
 ========================================================================================================
-  ⚡ zbench Statistical Microbenchmark Suite (Pure Zig 0.17.0-dev, Criterion-Grade)
+  ⚡ zbench Statistical Microbenchmark Suite (Pure Zig 0.17.0+, Criterion-Grade)
 ========================================================================================================
 
 Benchmark                    |     Throughput | Latency (Mean±σ) |   p50 (Median) |        p99 | Distribution
@@ -43,10 +43,16 @@ QuickSort (256 integers)     |   1.69 M ops/s |   593.1±37.5 ns |       581.2 n
 
 ## Installation (`build.zig.zon`)
 
+Tested with Zig **0.17.1**; minimum supported Zig **0.17.0**.
+
+Development install from `main` (moving branch, not a published 1.1.1 tag).
+`zig fetch --save` records the content hash; commit `build.zig.zon` to pin it.
+The 1.1.1 package changes are available after this branch is merged.
+
 Add `zbench` to your `build.zig.zon`:
 
 ```bash
-zig fetch --save https://github.com/entropyparadox-lab/zbench/archive/refs/tags/v1.0.0.tar.gz
+zig fetch --save https://github.com/entropyparadox-lab/zbench/archive/refs/heads/main.tar.gz
 ```
 
 In your `build.zig`:
